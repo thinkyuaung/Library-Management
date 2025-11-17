@@ -6,10 +6,9 @@ function Layout() {
   return (
     <div className='layout'>
         <nav>
-          <h3>Library</h3>
             <ul>
-                <li>Home</li>
-                <li>Create</li>
+                <li className='text-primary'>Home</li>
+                <li className='text-amber-300'>Create</li>
                 <li>Search</li>
             </ul>
         </nav>
