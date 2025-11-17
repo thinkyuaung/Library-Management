@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function nav() {
   return (
     <div>
-        <nav className='border-b-1 shadow-lg max-w-6xl mx-auto'>
+        <nav className='border-b-gray-200 shadow-lg max-w-3xl mx-auto'>
             <ul className='flex justify-between items-center p-3'>
           <li className='flex'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -27,7 +27,7 @@ function nav() {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" className='py-1'/>
             </svg>
-            <span className='hidden md:block'>Create Book</span></Link>
+            <span className='hidden md:block text-sm'>Create Book</span></Link>
             <div className='w-8'>
               <img src='https://cdn-icons-png.flaticon.com/512/9815/9815472.png' className='w-full' />
             </div>

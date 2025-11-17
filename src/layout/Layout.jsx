@@ -6,7 +6,7 @@ function Layout() {
   return (
     <div className=''>
         <Nav />
-        <div className='max-w-6xl mx-auto p-3'>
+        <div className='max-w-3xl mx-auto'>
           <Outlet/>
         </div>
         
