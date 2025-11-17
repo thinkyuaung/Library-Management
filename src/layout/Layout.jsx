@@ -1,18 +1,15 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
-import './Layout.css'
+import { Link, Outlet } from 'react-router-dom'
+import Nav from '../components/nav'
 
 function Layout() {
   return (
-    <div className='layout'>
-        <nav>
-            <ul>
-                <li className='text-primary'>Home</li>
-                <li className='text-amber-300'>Create</li>
-                <li>Search</li>
-            </ul>
-        </nav>
-        <Outlet/>
+    <div className=''>
+        <Nav />
+        <div className='max-w-6xl mx-auto p-3'>
+          <Outlet/>
+        </div>
+        
     </div>
   )
 }
