@@ -5,6 +5,7 @@ import Layout from "../layout/Layout.jsx";
 import Home from "../pages/Home.jsx";
 import Search from "../pages/Search.jsx";
 import Create from "../pages/Create.jsx";
+import BookDetail from "../pages/BookDetail.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,9 @@ const router = createBrowserRouter([
         },{
             path: "/search",
             element: <Search />
+        },{
+            path: "/BookDetail/:id",
+            element: <BookDetail />
         },
     ]
     },

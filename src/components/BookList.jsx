@@ -1,6 +1,7 @@
 import React from 'react'
 import book from '../assets/book.png';
 import useFetch from '../hooks/useFetch';
+import { Link } from 'react-router-dom';
 
 export default function BookList() {
 
@@ -15,8 +16,10 @@ export default function BookList() {
             {loading && <p>loading ... </p>}
             {/* book list */}
             {!!books && (
+              
                 <div className='grid grid-cols-2 md:grid-cols-4 gap-4 my-3'>
                     {books.map((b) => (
+                        <Link to={`/BookDetail/${b.id}`}>
                         <div className='p-4 border border-gray-500' key={b.id}>
 
                             <img src={book} alt="" />
@@ -31,8 +34,10 @@ export default function BookList() {
                                 </div>
                             </div>
                         </div>
+                        </Link>
                     ))}
                 </div>
+             
             )}
         </div>
     )
