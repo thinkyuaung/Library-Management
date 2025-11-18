@@ -1,45 +1,34 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 import useFetch from '../hooks/useFetch';
 import bookImg from '../assets/book.png';
 
+export default function BookDetail() {
+    let { id } = useParams();
+    let { data: book, loading, error } = useFetch(`http://localhost:3001/books/${id}`)
 
-function BookDetail() {
-    let params = useParams();
-    let url = 'http://localhost:3001/books/'+params.id;
-    let { data: book, loading, error } = useFetch(url);
-
-    if (error) {
-        return <p>{error}</p>
-    }
-    
-  return (
-    <div>
-        {loading && <p>Loading...</p>}
-        {!!book && (
-               
-                <div className='grid grid-cols-2 md:grid-cols-4 gap-4 my-3'>
-                    
-                        <div className='p-4 border border-gray-500' key={book.id}>
-
-                            <img src={bookImg} alt="" />
-                            <div className='text-center space-y-2 mt-3'>
-                                <h1>{book.title}</h1>
-                                <p>{book.description}</p>
-                                {/* genres */}
-                                <div className='flex flex-wrap'>
-                                    {book.categories.map(c => (
-                                        <span key={c} className='mx-1 my-1 text-white rounded-full px-2 py-1 text-sm bg-blue-500'> {c}</span>
-                                    ))}
-                                </div>
-                            </div>
+    return (
+        <>
+            {error && <p>{error}</p>}
+            {loading && <p>loading ....</p>}
+            {book && (
+                <div className='grid grid-cols-2'>
+                    <div>
+                        <img src={bookImg} alt="" className='w-[80%]' />
+                    </div>
+                    <div className='space-y-4'>
+                        <h1 className='text-3xl font-bold'>{book.title}</h1>
+                        <div className='space-x-3'>
+                            {book.categories.map(cateogry => (
+                                <span className='bg-blue-500 text-white rounded-full text-sm px-2 py-1' key={cateogry}>{cateogry}</span>
+                            ))}
                         </div>
-                   
+                        <p>
+                            {book.description}
+                        </p>
+                    </div>
                 </div>
-             
             )}
-    </div>
-  )
+        </>
+    )
 }
-
-export default BookDetail
