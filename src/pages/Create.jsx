@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
+import { Link, useNavigate } from 'react-router-dom';
+import useFetch from '../hooks/useFetch.js';
+import usePost from '../hooks/usePost.js';
 
 function Create() {
   let [title,setTitle] = useState('');
@@ -13,9 +14,7 @@ function Create() {
     setNewCategory('')
   })
 
-  let {setPostData,data:book,loading} = useFetch('http://localhost:3001/books','POST');
-
-  console.log("HOOK RETURN:", useFetch('http://localhost:3001/books','POST'));
+  let {postData,data:book} = usePost('http://localhost:3001/books','POST');
 
 
   let addBook = (e)=>{
@@ -24,14 +23,17 @@ function Create() {
     let newBook = {
         title:title,
         description:description,
-        category:category
+        categories:category
     }
 
-    setPostData(newBook)
+    postData(newBook)
   }
 
+  let navigate = useNavigate();
   useEffect(()=>{
-    console.log(book);
+    if(book){
+        navigate('/');
+    }
   },[book])
 
   return (
