@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-
+import useFetch from '../hooks/useFetch';
 
 function Create() {
   let [title,setTitle] = useState('');
@@ -13,9 +13,30 @@ function Create() {
     setNewCategory('')
   })
 
+  let {setPostData,data:book,loading} = useFetch('http://localhost:3001/books','POST');
+
+  console.log("HOOK RETURN:", useFetch('http://localhost:3001/books','POST'));
+
+
+  let addBook = (e)=>{
+    e.preventDefault();
+
+    let newBook = {
+        title:title,
+        description:description,
+        category:category
+    }
+
+    setPostData(newBook)
+  }
+
+  useEffect(()=>{
+    console.log(book);
+  },[book])
+
   return (
     
-<form className="max-w-sm mx-auto space-y-4 mt-4">
+<form className="max-w-sm mx-auto space-y-4 mt-4" onSubmit={addBook}>
     <div>
         <label htmlFor="visitors" className="block mb-2.5 text-sm font-medium text-heading">
             BOOK TITLE {title}
