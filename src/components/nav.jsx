@@ -1,18 +1,31 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate} from 'react-router-dom'
 
 
-function nav() {
+function Nav() {
+  let [search,setSearch] = useState('');
+  let navigate = useNavigate();
+
+  let handleSearch = ()=>{
+    navigate(`/?search=${search}`)
+    setSearch('')
+  }
+  
   return (
     <div>
         <nav className='border-b-gray-200 shadow-lg max-w-3xl mx-auto'>
             <ul className='flex justify-between items-center p-3'>
           <li className='flex'>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 mr-2">
               <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
             </svg>
 
-            <input type="text" placeholder="search books..." className='outline-none' />
+            <input value={search} type="text" placeholder="search books..." className='outline-none' onChange={e=>setSearch(e.target.value)}/>
+            <li className='flex'>
+            <button  className='text-white bg-primary rounded-2xl px-3 py-1 flex' onClick={handleSearch}> 
+            <span className='hidden md:block text-sm'>Search</span></button>
+
+          </li>
           </li>
           <li className='flex md:-ml-32'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -39,4 +52,4 @@ function nav() {
   )
 }
 
-export default nav
+export default Nav

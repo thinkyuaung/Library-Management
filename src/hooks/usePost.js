@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 
 const usePost = (url) => {
   const [data, setData] = useState(null);

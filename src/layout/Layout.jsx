@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import Nav from '../components/nav'
+import Nav from '../components/nav';
 import { SwitchTransition,CSSTransition } from 'react-transition-group';
 import './style.css';
 
