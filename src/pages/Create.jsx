@@ -8,8 +8,17 @@ function Create() {
   let [description,setDescription] = useState('');
   let [newCategory,setNewCategory] = useState('');
   let [category,setCategory] = useState([]);
+  let [error,setError] = useState('');
 
   let addCategory = (()=>{
+    if(newCategory && category.includes(newCategory)){
+        setError('Category already exists')
+        setTimeout(()=>{
+          setError('')
+        },2000)
+      setNewCategory('')
+      return;
+    }
     setCategory(prevState=>[newCategory,...prevState])
     setNewCategory('')
   })
@@ -41,7 +50,7 @@ function Create() {
 <form className="max-w-sm mx-auto space-y-4 mt-4" onSubmit={addBook}>
     <div>
         <label htmlFor="visitors" className="block mb-2.5 text-sm font-medium text-heading">
-            BOOK TITLE {title}
+            BOOK TITLE
         </label>
         <input
             type="text"
@@ -55,7 +64,7 @@ function Create() {
 
     <div>
         <label htmlFor="visitors" className="block mb-2.5 text-sm font-medium text-heading">
-            BOOK DESCRIPTION {description}
+            BOOK DESCRIPTION 
         </label>
         <textarea
             type="text"
@@ -69,7 +78,7 @@ function Create() {
 
     <div>
         <label htmlFor="visitors" className="block mb-2.5 text-sm font-medium text-heading">
-            CATEGORIES {newCategory}
+            CATEGORIES 
         </label>
         <div className='flex gap-2'>
            <input
@@ -85,12 +94,14 @@ function Create() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" className='py-1'/>
             </svg>
         </button>
+        
         </div>
         <div className='space-x-3 mt-4'>
           {category.map(cateogry => (
             <span className='bg-blue-500 text-white rounded-full text-sm px-2 py-1' key={cateogry}>{cateogry}</span>
           ))}
         </div>
+        { error && <p className='text-red-500 text-sm mt-2'>{error}</p>}
     </div>
 
     {/* <div className='focus:ring-brand focus:border-brand block w-full px-2.5 py-2'>

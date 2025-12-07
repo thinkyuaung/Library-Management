@@ -38,6 +38,8 @@ export default function BookList() {
                     ))}
                 </div>
             )}
+            {books && books.length === 0 && (<p className='text-center text-gray-500'>No Search Results found</p>)}
+            
         </div>
     )
 }
