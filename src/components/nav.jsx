@@ -1,13 +1,13 @@
-import React, { useState,useContext } from 'react'
+import React, { useState,useContext, use } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
-import { ThemeContext } from '../contexts/ThemeContext';
+import useTheme from '../hooks/useTheme';
 
 
 function Nav() {
   let [search,setSearch] = useState('');
   let navigate = useNavigate();
 
-  let {theme} = useContext(ThemeContext);
+  let {theme} = useTheme();
 
   let handleSearch = ()=>{
     navigate(`/?search=${search}`)
