@@ -12,7 +12,7 @@ export default function BookDetail() {
             {error && <p>{error}</p>}
             {loading && <p>loading ....</p>}
             {book && (
-                <div className='grid grid-cols-2'>
+                <div className='grid grid-cols-2 mt-5'>
                     <div>
                         <img src={bookImg} alt="" className='w-[80%]' />
                     </div>

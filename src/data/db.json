@@ -42,9 +42,7 @@
       "title": "Nyi Pu Lay",
       "description": "Doctor",
       "categories": [
-        "medicine",
-        "laravel",
-        "php"
+        "medicine"
       ],
       "id": 4
     }
