@@ -1,4 +1,4 @@
-import React, { useState,useContext, use } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import useTheme from '../hooks/useTheme';
 
@@ -7,7 +7,7 @@ function Nav() {
   let [search,setSearch] = useState('');
   let navigate = useNavigate();
 
-  let {theme} = useTheme();
+  let {theme,changeTheme} = useTheme();
 
   let handleSearch = ()=>{
     navigate(`/?search=${search}`)
@@ -16,7 +16,7 @@ function Nav() {
   
   return (
     <div>
-        <nav className={`border-b-gray-200 shadow-lg max-w-3xl mx-auto ${theme==='dark'?'bg-gray-200':'bg-yellow-200' }`}>
+        <nav onClick={changeTheme} className={`border-b-gray-200 shadow-lg max-w-3xl mx-auto ${theme==='dark'?'bg-gray-200':'bg-yellow-200' }`}>
             <ul className='flex justify-between items-center p-3'>
           <li className='flex'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 mr-2">
