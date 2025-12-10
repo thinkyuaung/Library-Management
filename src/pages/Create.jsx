@@ -23,7 +23,7 @@ function Create() {
     setNewCategory('')
   })
 
-  let {postData,data:book} = usePost('http://localhost:3001/books','POST');
+  let {postData,data:book} = usePost('http://localhost:3000/books','POST');
 
 
   let addBook = (e)=>{

@@ -45,6 +45,17 @@
         "medicine"
       ],
       "id": 4
+    },
+    {
+      "title": "Road to Full Stack",
+      "description": "Full Stack Developer Path",
+      "categories": [
+        "MySQL",
+        "AWS",
+        "React",
+        "JS"
+      ],
+      "id": 5
     }
   ]
 }

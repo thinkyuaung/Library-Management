@@ -5,7 +5,7 @@ import bookImg from '../assets/book.png';
 
 export default function BookDetail() {
     let { id } = useParams();
-    let { data: book, loading, error } = useFetch(`http://localhost:3001/books/${id}`)
+    let { data: book, loading, error } = useFetch(`http://localhost:3000/books/${id}`)
 
     return (
         <>
