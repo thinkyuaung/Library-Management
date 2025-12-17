@@ -17,7 +17,7 @@ function Nav() {
   
   return (
     <div>
-        <nav className={`shadow-lg max-w-3xl mx-auto ${isDark?'bg-black border border-white':'bg-white border border-gray-200' }`}>
+        <nav className={`shadow-lg  mx-auto ${isDark?'bg-black border border-white':'bg-white border border-gray-200' }`}>
             <ul className='flex justify-between items-center p-3'>
           <li className='flex'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 mr-2">
