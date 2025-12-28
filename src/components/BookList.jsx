@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import book from '../assets/book.png';
 import { Link, useLocation } from 'react-router-dom';
 import { db } from '../firebase';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
-
+import { collection, deleteDoc, getDocs, orderBy, query,doc } from 'firebase/firestore';
+import trash from '../assets/trash.svg';
 
 export default function BookList() {
     let location = useLocation();
@@ -14,6 +14,13 @@ export default function BookList() {
     let [books,setBooks] = useState([]);
     let [loading,setLoading] = useState('');
     //let { data: books, loading, error } = useFetch(`http://localhost:3000/books${search?`?q=${search}`:''}`);
+
+    let deleteBook = ((e,id)=>{
+        e.preventDefault();
+        let ref = doc(db,'books',id);
+        deleteDoc(ref);
+        setBooks(prevBooks=>prevBooks.filter(b=>b.id!==id));
+    });
 
     useEffect(()=>{
         setLoading(true)
@@ -54,10 +61,15 @@ export default function BookList() {
                                     <h1>{b.title}</h1>
                                     <p>{b.description}</p>
                                     {/* genres */}
-                                    <div className='flex flex-wrap'>
-                                        {b.categories.map(c => (
+                                    <div className='flex flex-wrap justify-between items-center mt-2'>
+                                        <div>
+                                            {b.categories.map(c => (
                                             <span key={c} className='mx-1 my-1 text-white rounded-full px-2 py-1 text-sm bg-blue-500'> {c}</span>
                                         ))}
+                                        </div>
+                                        <div onClick={(e)=>deleteBook(e,b.id)}>
+                                            <img src={trash} alt="Delete Icon" className='w-5 h-5 ml-2 cursor-pointer'/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
