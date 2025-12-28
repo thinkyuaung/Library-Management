@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import book from '../assets/book.png';
 import { Link, useLocation } from 'react-router-dom';
 import { db } from '../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 
 
 export default function BookList() {
@@ -18,7 +18,8 @@ export default function BookList() {
     useEffect(()=>{
         setLoading(true)
         let ref = collection(db,'books');
-        getDocs(ref).then(docs=>{
+        let q = query(ref,orderBy('date','desc'));
+        getDocs(q).then(docs=>{
             if(docs.empty){
                 setError("No documents Found")
                 setLoading(false)

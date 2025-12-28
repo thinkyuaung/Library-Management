@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import useFetch from '../hooks/useFetch.js';
-import usePost from '../hooks/usePost.js';
+// import useFetch from '../hooks/useFetch.js';
+// import usePost from '../hooks/usePost.js';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase/index.js';
 
 function Create() {
   let [title,setTitle] = useState('');
@@ -23,8 +25,10 @@ function Create() {
     setNewCategory('')
   })
 
-  let {postData,data:book} = usePost('http://localhost:3000/books','POST');
+ // let {postData,data:book} = usePost('http://localhost:3000/books','POST');
 
+  let ref = collection(db,'books');
+  let navigate = useNavigate();
 
   let addBook = (e)=>{
     e.preventDefault();
@@ -32,18 +36,21 @@ function Create() {
     let newBook = {
         title:title,
         description:description,
-        categories:category
+        categories:category,
+        date:serverTimestamp()
     }
+    addDoc(ref,newBook);
+    navigate('/');
 
-    postData(newBook)
+    //postData(newBook)
   }
 
-  let navigate = useNavigate();
-  useEffect(()=>{
-    if(book){
-        navigate('/');
-    }
-  },[book])
+  // let navigate = useNavigate();
+  // useEffect(()=>{
+  //   if(book){
+  //       navigate('/');
+  //   }
+  // },[book])
 
   return (
     
